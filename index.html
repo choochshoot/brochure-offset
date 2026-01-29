@@ -2,9 +2,8 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Pulido Asesores | Brochure PNG 300 DPI</title>
+<title>Pulido Asesores | Tríptico Editorial</title>
 
-<!-- html2canvas -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <style>
@@ -18,7 +17,7 @@
 
 body{
   font-family:'Segoe UI',system-ui,sans-serif;
-  background:#eef1f5;
+  background:#edf0f5;
   padding:20px;
 }
 
@@ -31,7 +30,7 @@ body{
 }
 .header button{
   margin:8px;
-  padding:12px 26px;
+  padding:12px 28px;
   border:none;
   border-radius:4px;
   font-weight:600;
@@ -64,7 +63,7 @@ body{
   width:297px;
   height:630px;
   position:relative;
-  padding:48px 32px;
+  padding:44px 30px;
   border-right:2px dashed rgba(255,255,255,.35);
   overflow:hidden;
 }
@@ -77,12 +76,11 @@ body{
   inset:0;
   background:linear-gradient(
     180deg,
-    rgba(11,30,51,.92),
-    rgba(11,30,51,.70)
+    rgba(11,30,51,.94),
+    rgba(11,30,51,.72)
   );
   z-index:0;
 }
-
 .side-b .panel::before{
   content:"";
   position:absolute;
@@ -90,7 +88,7 @@ body{
   background:linear-gradient(
     180deg,
     rgba(255,255,255,.97),
-    rgba(255,255,255,.88)
+    rgba(255,255,255,.90)
   );
   z-index:0;
 }
@@ -116,20 +114,32 @@ body{
 .dark{color:var(--text-dark)}
 
 .logo{
-  max-width:150px;
-  margin:0 auto 24px;
+  width:180px;
+  margin:0 auto 28px;
 }
 
-h1{font-size:26px;font-weight:900;margin-bottom:12px}
-h2{font-size:21px;font-weight:800;margin-bottom:10px}
-h3{font-size:14px;color:var(--blue-accent)}
+h2{
+  font-size:20px;
+  font-weight:800;
+  margin-bottom:10px;
+}
+h3{
+  font-size:14px;
+  color:var(--blue-accent);
+  margin:16px 0 6px;
+}
+p{
+  font-size:12px;
+  line-height:1.6;
+  margin-bottom:10px;
+}
 
-p{font-size:12px;line-height:1.55;margin-bottom:12px}
-
+/* ================= LISTAS ================= */
 ul{list-style:none}
 li{
   font-size:11px;
-  padding-left:14px;
+  padding-left:18px;
+  margin-bottom:6px;
   position:relative;
 }
 li::before{
@@ -139,24 +149,57 @@ li::before{
   color:var(--blue-accent);
 }
 
+/* ================= BLOQUES ================= */
 .card{
   background:rgba(255,255,255,.12);
   border-left:4px solid var(--blue-accent);
   padding:14px;
-  margin:16px 0;
+  margin:14px 0;
   font-size:11px;
 }
+.side-b .card{background:#f3f6fb}
 
+/* ================= IMÁGENES ================= */
+.image{
+  width:100%;
+  height:110px;
+  background-size:cover;
+  background-position:center;
+  border-radius:6px;
+  margin:18px 0;
+}
+
+/* ================= ICONOS ================= */
+.icon-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:8px;
+  font-size:11px;
+}
+.icon{
+  width:16px;
+  height:16px;
+  fill:var(--blue-dark);
+}
+.icon.light{fill:#fff}
+
+/* ================= QR ================= */
 .qr{
   margin-top:auto;
   text-align:center;
 }
 .qr img{
-  width:80px;
-  height:80px;
+  width:86px;
+  height:86px;
+}
+.qr span{
+  font-size:10px;
+  display:block;
+  margin-top:4px;
 }
 
-/* ================= VISTA SOLO ================= */
+/* ================= EXPORT ================= */
 @media print{
   .header{display:none}
 }
@@ -166,7 +209,7 @@ li::before{
 <body>
 
 <div class="header">
-  <h1>Descarga para Imprenta</h1>
+  <h1>Exportación para Imprenta</h1>
   <button onclick="downloadPNG('side-a','Pulido-Asesores-Lado-A-300dpi.png')">
     Descargar LADO A – PNG 300 DPI
   </button>
@@ -177,69 +220,125 @@ li::before{
 
 <div class="preview">
 
-<!-- ========== LADO A ========== -->
+<!-- ================= LADO A ================= -->
 <div class="triptych side-a">
+
   <div class="panel panel-a">
     <div class="content light">
       <h2>Especialistas en Auditoría</h2>
-      <div class="card">Auditoría como acompañamiento estratégico.</div>
+      <p>Auditoría como acompañamiento estratégico con enfoque preventivo.</p>
+      <div class="card">
+        Análisis, control y cercanía para fortalecer decisiones financieras.
+      </div>
+      <div class="image" style="background-image:url('https://i.imgur.com/c1al2rA.png')"></div>
+      <ul>
+        <li>Auditoría Financiera</li>
+        <li>Auditoría Fiscal</li>
+        <li>Control Interno</li>
+        <li>BPS & BPO</li>
+      </ul>
     </div>
   </div>
+
   <div class="panel panel-b">
     <div class="content light" style="text-align:center">
       <img src="https://i.imgur.com/DGBtqM1.png" class="logo">
-      <h1>PULIDO ASESORES</h1>
+      <div class="card">
+        Firma especializada en auditoría y control para organizaciones que buscan certeza.
+      </div>
+      <p><em>“Transformamos el control en una herramienta de crecimiento”</em></p>
       <div class="qr">
         <img src="https://i.imgur.com/x5CPPGg.png">
-        <p>Escanea para más información</p>
+        <span>Escanea para conocer más</span>
       </div>
     </div>
   </div>
+
   <div class="panel panel-c">
     <div class="content light">
       <h2>¿Por qué elegirnos?</h2>
       <ul>
-        <li>Enfoque preventivo</li>
+        <li>Enfoque preventivo de riesgos</li>
         <li>Acompañamiento cercano</li>
-        <li>Rigor técnico</li>
+        <li>Rigor técnico especializado</li>
+        <li>Soluciones integrales</li>
       </ul>
+      <div class="image" style="background-image:url('https://i.imgur.com/yWbW5EY.png')"></div>
+      <div class="card">Consulta inicial sin costo</div>
     </div>
   </div>
+
 </div>
 
-<!-- ========== LADO B ========== -->
+<!-- ================= LADO B ================= -->
 <div class="triptych side-b">
+
   <div class="panel panel-d">
     <div class="content dark">
       <h2>Nuestra Filosofía</h2>
-      <p>La auditoría es un proceso compartido.</p>
+      <p>La auditoría es un proceso que se construye junto al cliente.</p>
+      <div class="image" style="background-image:url('https://i.imgur.com/H9u54tb.png')"></div>
+      <h3>Pilares Fundamentales</h3>
+      <ul>
+        <li>Control como crecimiento</li>
+        <li>Confianza como resultado</li>
+        <li>Acompañamiento cercano</li>
+      </ul>
+      <div class="card">
+        Nos involucramos de forma activa, ordenada y oportuna.
+      </div>
     </div>
   </div>
+
   <div class="panel panel-e">
     <div class="content dark">
-      <h2>Servicios</h2>
+      <h2>Servicios Especializados</h2>
+      <h3>Auditoría</h3>
       <ul>
         <li>Auditoría Fiscal</li>
         <li>Estados Financieros</li>
         <li>Control Interno</li>
+        <li>Dictámenes e Informes</li>
       </ul>
+      <div class="image" style="background-image:url('https://i.imgur.com/XYIbALB.png')"></div>
+      <h3>BPS & BPO</h3>
+      <p>Externalización con disciplina operativa y control.</p>
     </div>
   </div>
+
   <div class="panel panel-f">
     <div class="content dark">
-      <h2>Misión & Visión</h2>
-      <p>Firma referente en auditoría.</p>
+      <h2>Contacto</h2>
+
+      <p><strong>CP Gilberto Pulido</strong><br>
+      Especialista en Auditoría y Control Interno</p>
+
+      <div class="icon-row">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M6.6 10.8c1.5 3 3.6 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.2 1.2.4 2.5.7 3.8.7.6 0 1 .4 1 1v3.5c0 .6-.4 1-1 1C10.3 21.2 2.8 13.7 2.8 4.8c0-.6.4-1 1-1H7.3c.6 0 1 .4 1 1 0 1.3.2 2.6.7 3.8.1.4 0 .8-.2 1.1l-2.2 2.1z"/></svg>
+        +52 56 6855 0117
+      </div>
+
+      <div class="icon-row">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 13 2 6.8V18h20V6.8zM12 11 22 4H2z"/></svg>
+        contacto@pulidoasesores.com
+      </div>
+
+      <div class="icon-row">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M16.6 14.5c-.3-.2-1.9-.9-2.2-1s-.6-.2-.9.2-1 1.2-1.2 1.4-.4.3-.7.1-1.4-.5-2.6-1.6c-1-1-1.6-2.2-1.8-2.5-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.6.1-.2.2-.3.3-.5.1-.2 0-.4 0-.6s-.9-2.2-1.2-3c-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.4s-1.2 1.2-1.2 3 .9 3.4 1 3.7c.1.3 1.7 5.4 6.5 7.6 1.1.5 2 .8 2.7 1 .8.3 1.5.2 2 .1.6-.1 1.9-.8 2.2-1.6s.3-1.5.2-1.6c-.1-.2-.3-.3-.6-.5z"/></svg>
+        WhatsApp disponible
+      </div>
+
     </div>
   </div>
+
 </div>
 
 </div>
 
 <script>
 function downloadPNG(sideClass, filename){
-  const target = document.querySelector(`.${sideClass}`);
-
-  html2canvas(target, {
+  const target=document.querySelector(`.${sideClass}`);
+  html2canvas(target,{
     scale:4,
     useCORS:true,
     backgroundColor:'#ffffff',
@@ -247,8 +346,8 @@ function downloadPNG(sideClass, filename){
     height:2480
   }).then(canvas=>{
     const link=document.createElement('a');
-    link.download=filename;
     link.href=canvas.toDataURL('image/png');
+    link.download=filename;
     link.click();
   });
 }
