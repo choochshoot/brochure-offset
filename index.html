@@ -2,902 +2,404 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pulido Asesores | Tríptico Horizontal</title>
+<title>Pulido Asesores | Brochure Tríptico Premium</title>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 <style>
-:root {
-  --primary-blue: #0b1e33;
-  --accent-blue: #2a7de1;
-  --dark-bg: #05070d;
-  --light-bg: #ffffff;
-  --text-dark: #333333;
-  --text-light: #666666;
-  --border-color: #e0e0e0;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f5f5f5; padding: 20px; }
-.container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden; }
-
-/* Controles */
-.controls-header { background: var(--primary-blue); color: white; padding: 20px; text-align: center; }
-.controls-header h1 { font-size: 24px; margin-bottom: 10px; }
-.controls { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
-.btn { padding: 12px 24px; background: var(--accent-blue); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
-.btn:hover { background: #1a6bc7; transform: translateY(-2px); }
-.btn-print { background: #28a745; }
-.btn-print:hover { background: #218838; }
-.btn-download { background: var(--accent-blue); }
-.btn-help { background: #6c757d; }
-.btn-help:hover { background: #5a6268; }
-
-/* Vista previa del tríptico - HORIZONTAL */
-.triptych-preview { padding: 30px; display: flex; flex-direction: column; align-items: center; gap: 30px; }
-.preview-container { display: flex; flex-direction: column; gap: 30px; align-items: center; width: 100%; }
-
-/* --- TRÍPTICO HORIZONTAL - DISEÑO PRINCIPAL --- */
-.triptych {
-  display: flex;
-  background: white;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-  position: relative;
-  /* ANCHO TOTAL: 297mm (A4 horizontal) dividido en 3 paneles de 99mm */
-  width: 891px; /* 297mm * 3 = 891px (1mm = 3px para vista previa) */
-  height: 630px; /* 210mm * 3 = 630px */
-  transform-origin: top left;
-  transform: scale(0.7); /* Escalado para vista previa en pantalla */
-  margin: 20px auto;
+:root{
+  --blue-dark:#0b1e33;
+  --blue-mid:#1a3a5f;
+  --blue-accent:#2a7de1;
+  --text-dark:#1e1e1e;
 }
 
-/* Cada panel del tríptico HORIZONTAL - MISMAS DIMENSIONES LADO A Y LADO B */
-.panel {
-  /* DIMENSIONES IDÉNTICAS PARA AMBOS LADOS */
-  width: 297px; /* 99mm * 3px/mm = 297px */
-  height: 630px; /* 210mm * 3px/mm = 630px */
-  padding: 54px 30px 36px 30px; /* Equivalente a 18mm top, 10mm lados, 12mm bottom */
-  position: relative;
-  page-break-inside: avoid;
-  overflow: hidden;
-  box-sizing: border-box;
-  /* LÍNEAS PUNTEADAS DE DOBLEZ MEJOR VISIBLES */
-  border-right: 2px dashed rgba(0, 0, 0, 0.4) !important;
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'Segoe UI',system-ui,sans-serif;
+  background:#eef1f5;
+  padding:20px;
 }
 
-/* Último panel sin línea derecha */
-.panel-c, .panel-f { border-right: none !important; }
+/* ================= HEADER ================= */
+.header{
+  background:var(--blue-dark);
+  color:#fff;
+  padding:20px;
+  text-align:center;
+}
+.header button{
+  margin:8px;
+  padding:12px 24px;
+  border:none;
+  border-radius:4px;
+  font-weight:600;
+  cursor:pointer;
+}
+.print{background:#28a745;color:#fff}
+.pdf{background:var(--blue-accent);color:#fff}
 
-/* LADO A - Exterior del tríptico (mismo tamaño que Lado B) */
-.panel-a { background: linear-gradient(135deg, var(--primary-blue) 0%, #1a3a5f 100%); color: white; }
-.panel-b { background: linear-gradient(135deg, #1a3a5f 0%, var(--primary-blue) 100%); color: white; }
-.panel-c { background: linear-gradient(135deg, var(--primary-blue) 0%, #0b1e33 100%); color: white; }
-
-/* LADO B - Interior del tríptico (mismo tamaño que Lado A) */
-.panel-d, .panel-e, .panel-f { background: white; color: var(--text-dark); }
-
-/* Estilos de contenido del tríptico - AJUSTADOS PARA HORIZONTAL */
-.triptych-content {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  z-index: 2;
-  overflow: hidden;
+/* ================= CONTENEDOR ================= */
+.preview{
+  margin-top:40px;
+  display:flex;
+  flex-direction:column;
+  gap:40px;
+  align-items:center;
 }
 
-/* TIPOGRAFÍA AJUSTADA PARA HORIZONTAL */
-.triptych-title {
-  font-size: 22px !important;
-  font-weight: 800;
-  margin-bottom: 12px !important;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  line-height: 1.2;
+/* ================= TRÍPTICO ================= */
+.triptych{
+  display:flex;
+  width:891px;
+  height:630px;
+  transform:scale(.7);
+  transform-origin:top center;
+  box-shadow:0 18px 45px rgba(0,0,0,.25);
 }
 
-.triptych-subtitle {
-  font-size: 16px !important;
-  font-weight: 600;
-  margin-bottom: 18px !important;
-  color: var(--accent-blue);
-  line-height: 1.4;
+/* ================= PANELES ================= */
+.panel{
+  width:297px;
+  height:630px;
+  position:relative;
+  padding:48px 32px;
+  border-right:2px dashed rgba(255,255,255,.35);
+  overflow:hidden;
+}
+.panel:last-child{border-right:none}
+
+/* ================= OVERLAYS ================= */
+
+/* LADO A – exterior */
+.side-a .panel::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    180deg,
+    rgba(11,30,51,.92) 0%,
+    rgba(11,30,51,.70) 100%
+  );
+  z-index:0;
 }
 
-.triptych-text {
-  font-size: 12px !important;
-  line-height: 1.5 !important;
-  margin-bottom: 18px !important;
+/* LADO B – interior */
+.side-b .panel::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    180deg,
+    rgba(255,255,255,.97) 0%,
+    rgba(255,255,255,.88) 100%
+  );
+  z-index:0;
 }
 
-.triptych-list {
-  list-style: none;
-  margin: 9px 0 !important;
-  padding: 0;
+/* ================= FONDOS ================= */
+.panel-a{background:url('https://i.imgur.com/lypuRIZ.png') center/cover}
+.panel-b{background:url('https://i.imgur.com/Azdj5Zf.png') center/cover}
+.panel-c{background:url('https://i.imgur.com/yWbW5EY.png') center/cover}
+
+.panel-d{background:url('https://i.imgur.com/H9u54tb.png') center/cover}
+.panel-e{background:url('https://i.imgur.com/XYIbALB.png') center/cover}
+.panel-f{background:url('https://i.imgur.com/N7bvlVG.png') center/cover}
+
+/* ================= CONTENIDO ================= */
+.content{
+  position:relative;
+  z-index:1;
+  height:100%;
+  display:flex;
+  flex-direction:column;
 }
 
-.triptych-list li {
-  padding: 6px 0 6px 12px !important;
-  position: relative;
-  font-size: 11px !important;
-  line-height: 1.4 !important;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  page-break-inside: avoid;
+.light{color:#fff}
+.dark{color:var(--text-dark)}
+
+.logo{
+  max-width:150px;
+  margin:0 auto 24px;
 }
 
-.panel-d .triptych-list li,
-.panel-e .triptych-list li,
-.panel-f .triptych-list li {
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+h1{
+  font-size:26px;
+  font-weight:900;
+  letter-spacing:.6px;
+  text-transform:uppercase;
+  margin-bottom:12px;
+}
+h2{
+  font-size:21px;
+  font-weight:800;
+  margin-bottom:10px;
+}
+h3{
+  font-size:14px;
+  color:var(--blue-accent);
+  margin-bottom:6px;
 }
 
-.triptych-list li:before {
-  content: "•";
-  color: var(--accent-blue);
-  position: absolute;
-  left: 0;
-  font-size: 14px;
+p{
+  font-size:12px;
+  line-height:1.55;
+  margin-bottom:12px;
 }
 
-.highlight-box {
-  background: rgba(42, 125, 225, 0.1);
-  border-left: 3px solid var(--accent-blue);
-  padding: 12px !important;
-  margin: 15px 0 !important;
-  border-radius: 2px;
+ul{list-style:none}
+li{
+  font-size:11px;
+  padding:6px 0 6px 14px;
+  position:relative;
+}
+li::before{
+  content:"•";
+  position:absolute;
+  left:0;
+  color:var(--blue-accent);
+  font-weight:bold;
 }
 
-.highlight-title {
-  font-size: 14px !important;
-  font-weight: 700;
-  margin-bottom: 6px !important;
-  color: var(--accent-blue);
+.card{
+  background:rgba(255,255,255,.12);
+  border-left:4px solid var(--blue-accent);
+  padding:14px;
+  margin:16px 0;
+  font-size:11px;
 }
 
-.contact-info {
-  margin-top: auto;
-  padding-top: 15px !important;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  font-size: 10px !important;
-  text-align: center;
+.side-b .card{
+  background:#f3f6fb;
 }
 
-.panel-d .contact-info,
-.panel-e .contact-info,
-.panel-f .contact-info {
-  border-top: 1px solid var(--border-color);
+/* ================= IMÁGENES BLOQUE ================= */
+.image{
+  width:100%;
+  height:110px;
+  background-size:cover;
+  background-position:center;
+  border-radius:6px;
+  margin:16px 0;
 }
 
-.logo-container {
-  margin-bottom: 24px !important;
-  text-align: center;
+/* ================= QR ================= */
+.qr{
+  margin-top:auto;
+  text-align:center;
+}
+.qr img{
+  width:80px;
+  height:80px;
+  margin-bottom:6px;
+}
+.qr span{
+  font-size:10px;
 }
 
-.triptych-logo {
-  max-width: 150px !important;
-  height: auto;
-  margin: 0 auto 12px !important;
+/* ================= CONTACTO ================= */
+.contact{
+  margin-top:auto;
+  border-top:1px solid rgba(255,255,255,.35);
+  padding-top:10px;
+  font-size:10px;
+  text-align:center;
+}
+.side-b .contact{
+  border-color:#dcdcdc;
 }
 
-.qr-container {
-  text-align: center;
-  margin: 15px 0 !important;
-}
-
-.qr-placeholder {
-  width: 66px !important;
-  height: 66px !important;
-  background: #f8f9fa;
-  border: 1px solid var(--border-color);
-  margin: 0 auto 6px !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-light);
-  font-size: 9px !important;
-}
-
-/* ESTILOS PARA IMÁGENES INTEGRADAS - AJUSTADAS PARA HORIZONTAL */
-.content-image {
-  width: 100%;
-  max-height: 105px !important; /* 35mm equivalent */
-  object-fit: cover;
-  border-radius: 3px;
-  margin: 9px 0 12px 0 !important;
-  border: 1px solid rgba(0,0,0,0.05);
-  display: block;
-  page-break-inside: avoid;
-}
-
-.bg-image {
-  position: absolute;
-  top: 36px; /* 12mm */
-  left: 36px; /* 12mm */
-  width: calc(100% - 72px); /* 12mm izquierda + 12mm derecha */
-  height: calc(100% - 72px); /* 12mm arriba + 12mm abajo */
-  object-fit: cover;
-  opacity: 0.07;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.full-panel-image {
-  position: absolute;
-  top: 36px;
-  left: 36px;
-  width: calc(100% - 72px);
-  height: calc(100% - 72px);
-  object-fit: cover;
-  z-index: 1;
-  border-radius: 2px;
-  opacity: 0.9;
-}
-
-.image-overlay-content {
-  position: relative;
-  z-index: 2;
-  background: rgba(11, 30, 51, 0.82);
-  padding: 12px !important;
-  border-radius: 3px;
-  color: white;
-}
-
-/* CONTENEDORES DE COLUMNAS AJUSTADOS PARA HORIZONTAL */
-.column-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px !important;
-  font-size: 10px !important;
-  margin: 12px 0 !important;
-}
-
-.column-section {
-  background: #f8f9fa;
-  padding: 9px !important;
-  border-radius: 3px;
-}
-
-/* MARCADORES DE DOBLEZ VISIBLES */
-.fold-marker {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 0;
-  border-left: 2px dashed rgba(255, 255, 255, 0.6);
-  z-index: 10;
-}
-
-.panel-a .fold-marker { right: 0; }
-.panel-b .fold-marker { right: 0; }
-.panel-d .fold-marker,
-.panel-e .fold-marker {
-  border-left: 2px dashed rgba(0, 0, 0, 0.4);
-  right: 0;
-}
-
-/* Instrucciones de impresión */
-.print-instructions { background: #f8f9fa; border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; margin-top: 20px; max-width: 800px; }
-.print-instructions h3 { color: var(--primary-blue); margin-bottom: 15px; font-size: 18px; }
-.print-steps { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 15px; }
-.step { flex: 1; min-width: 200px; background: white; padding: 15px; border-radius: 6px; border-left: 4px solid var(--accent-blue); }
-.step-number { display: inline-block; width: 25px; height: 25px; background: var(--accent-blue); color: white; border-radius: 50%; text-align: center; line-height: 25px; font-weight: bold; margin-right: 10px; }
-
-/* --- ESTILOS ESPECÍFICOS PARA IMPRESIÓN HORIZONTAL --- */
-@media print {
-  body {
-    background: white;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
+/* ================= IMPRESIÓN ================= */
+@media print{
+  body{margin:0;padding:0;background:#fff}
+  .header{display:none}
+  .triptych{
+    transform:none!important;
+    width:297mm!important;
+    height:210mm!important;
+    box-shadow:none!important;
+    page-break-after:always;
   }
-  
-  .controls-header,
-  .preview-container,
-  .print-instructions {
-    display: none !important;
+  .panel{
+    width:99mm!important;
+    height:210mm!important;
+    padding:15mm 10mm!important;
   }
-  
-  .triptych-preview {
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .triptych {
-    box-shadow: none;
-    margin: 0 auto !important;
-    padding: 0;
-    width: 297mm !important; /* Ancho A4 horizontal */
-    height: 210mm !important; /* Alto A4 horizontal */
-    transform: none !important;
-    page-break-after: always;
-  }
-  
-  /* Configuración de página HORIZONTAL con rebase */
-  @page {
-    size: A4 landscape;
-    margin: 12mm; /* Rebase de 1.2cm */
-    marks: crop cross;
-    padding: 0;
-  }
-  
-  /* Paneles con dimensiones exactas iguales para Lado A y Lado B */
-  .panel {
-    width: 99mm !important; /* 297mm / 3 = 99mm */
-    height: 210mm !important;
-    padding: 18mm 10mm 12mm 10mm !important; /* Mismo padding para ambos lados */
-    margin: 0 !important;
-    overflow: hidden !important;
-    border-right: 2px dashed rgba(0, 0, 0, 0.3) !important;
-  }
-  
-  .panel-c, .panel-f { border-right: none !important; }
-  
-  /* Asegurar que el contenido quepa */
-  .triptych-content {
-    height: 186mm !important; /* 210mm - 12mm(top) - 12mm(bottom) */
-    overflow: hidden !important;
-  }
-  
-  /* Marca de agua para impresión */
-  .panel-a::before,
-  .panel-b::before,
-  .panel-c::before,
-  .panel-d::before,
-  .panel-e::before,
-  .panel-f::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-45deg);
-    width: 180px !important;
-    height: 90px !important;
-    background-image: url('https://i.imgur.com/DGBtqM1.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0.03;
-    z-index: 1;
-    pointer-events: none;
-  }
-  
-  /* Forzar saltos de página entre lados del tríptico */
-  .side-a {
-    page-break-after: always;
-  }
-  
-  /* Ajustes adicionales para evitar desbordamiento */
-  * {
-    max-height: 100% !important;
-    overflow: hidden !important;
+  .side-a{page-break-after:always}
+  @page{
+    size:A4 landscape;
+    margin:5mm;
   }
 }
-
-/* Responsive para vista previa */
-@media (max-width: 1100px) {
-  .triptych {
-    transform: scale(0.6);
-  }
-}
-@media (max-width: 900px) {
-  .triptych {
-    transform: scale(0.5);
-  }
-  .controls {
-    flex-direction: column;
-    align-items: center;
-  }
-  .btn {
-    width: 100%;
-    max-width: 300px;
-    justify-content: center;
-  }
-}
-@media (max-width: 768px) {
-  .triptych {
-    transform: scale(0.4);
-  }
-  .step {
-    min-width: 100%;
-  }
-}
-
-/* Modal de ayuda */
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.8);
-  z-index: 1000;
-  align-items: center;
-  justify-content: center;
-}
-.modal-content {
-  background: white;
-  border-radius: 8px;
-  max-width: 500px;
-  width: 90%;
-  padding: 30px;
-  position: relative;
-}
-.modal-close {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #666;
-}
-.modal h2 { color: var(--primary-blue); margin-bottom: 15px; }
-.modal p { margin-bottom: 15px; line-height: 1.6; }
 </style>
 </head>
+
 <body>
 
-<div class="container">
-  <div class="controls-header">
-    <h1>Tríptico Pulido Asesores - Formato Horizontal</h1>
-    <p>Diseño optimizado para impresión horizontal - Ambos lados con mismas dimensiones</p>
-    <div class="controls">
-      <button class="btn btn-print" onclick="window.print()"><i class="fas fa-print"></i> Imprimir Tríptico</button>
-      <button class="btn btn-download" id="downloadTriptico"><i class="fas fa-download"></i> Descargar PDF</button>
-      <button class="btn btn-help" id="openHelp"><i class="fas fa-question-circle"></i> Instrucciones</button>
-    </div>
-  </div>
-
-  <div class="triptych-preview">
-    <h2 style="color: var(--primary-blue); text-align: center;">Vista Previa - Formato Horizontal</h2>
-    <p style="text-align: center; color: #28a745; max-width: 800px; margin: 0 auto 20px; font-weight: 600;">
-      <i class="fas fa-check-circle"></i> Impresión horizontal | Líneas de doblez ajustadas | Lado A y Lado B con mismas dimensiones
-    </p>
-    
-    <div class="preview-container">
-      <!-- LADO A - Exterior (Se ve cuando está doblado) -->
-      <div style="text-align: center; margin-bottom: 10px; width: 100%;">
-        <h3 style="color: var(--primary-blue);">LADO A - Exterior (Cara visible cuando está doblado)</h3>
-        <p style="color: #666; font-size: 14px;">Tamaño de cada panel: 99mm (ancho) × 210mm (alto)</p>
-      </div>
-      
-      <div class="triptych side-a">
-        <!-- Panel 1 (Cubierta izquierda) -->
-        <div class="panel panel-a">
-          <div class="fold-marker"></div>
-          <img src="https://i.imgur.com/lypuRIZ.png" class="bg-image" alt="Fondo profesional">
-          <div class="triptych-content">
-            <div class="logo-container">
-              <img src="https://i.imgur.com/DGBtqM1.png" class="triptych-logo" alt="Pulido Asesores">
-            </div>
-            <h2 class="triptych-title">Especialistas en Auditoría</h2>
-            <div class="highlight-box">
-              <h3 class="highlight-title">Nuestro Enfoque</h3>
-              <p class="triptych-text">Auditoría como acompañamiento estratégico, con rigor técnico y proximidad al cliente.</p>
-            </div>
-            <img src="https://i.imgur.com/c1al2rA.png" class="content-image" alt="Equipo de trabajo profesional">
-            <ul class="triptych-list">
-              <li>Auditoría Financiera</li>
-              <li>Auditoría Fiscal</li>
-              <li>Control Interno</li>
-              <li>BPS & BPO</li>
-            </ul>
-            <div class="contact-info">
-              <p><strong>Tel:</strong> +52-56-6855-0117</p>
-              <p><strong>Email:</strong> contacto@pulidoasesores.com</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Panel 2 (Cubierta central) -->
-        <div class="panel panel-b">
-          <div class="fold-marker"></div>
-          <img src="https://i.imgur.com/Azdj5Zf.png" class="full-panel-image" alt="Concepto de auditoría y confianza">
-          <div class="image-overlay-content" style="text-align: center; height: 100%; display: flex; flex-direction: column; justify-content: center;">
-            <div style="margin-bottom: 36px;">
-              <h1 style="font-size: 32px; font-weight: 900; margin-bottom: 12px; color: white;">PULIDO ASESORES</h1>
-              <h2 style="font-size: 18px; font-weight: 300; color: #e0e0e0;">Firma Especializada</h2>
-            </div>
-            <div style="margin: 24px 0;">
-              <p style="font-size: 14px; line-height: 1.6; margin-bottom: 18px;">Certeza financiera • Control • Confianza</p>
-              <div style="border-top: 2px solid rgba(255,255,255,0.3); border-bottom: 2px solid rgba(255,255,255,0.3); padding: 18px 0; margin: 24px 0;">
-                <p style="font-size: 16px; font-weight: 600;">"Transformamos el control en una herramienta de crecimiento"</p>
-              </div>
-            </div>
-            <div class="qr-container">
-              <div class="qr-placeholder">QR Code<br>Scan aquí</div>
-              <p style="font-size: 10px; color: white;">Escanea para más información</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Panel 3 (Cubierta derecha) - TEXTO ELIMINADO SEGÚN SOLICITUD -->
-        <div class="panel panel-c">
-          <div class="triptych-content">
-            <h2 class="triptych-title">¿Por qué elegirnos?</h2>
-            <div style="margin: 18px 0;">
-              <h3 style="font-size: 14px; margin-bottom: 9px; color: var(--accent-blue);">Ventajas Competitivas</h3>
-              <ul class="triptych-list">
-                <li><strong>Enfoque preventivo:</strong> Identificamos riesgos oportunamente</li>
-                <li><strong>Acompañamiento cercano:</strong> Más que auditores, somos aliados</li>
-                <li><strong>Rigor técnico:</strong> Metodologías actualizadas y robustas</li>
-                <li><strong>Soluciones integrales:</strong> Auditoría + BPS + BPO integrados</li>
-              </ul>
-            </div>
-            <img src="https://i.imgur.com/yWbW5EY.png" class="content-image" alt="Servicios de auditoría">
-            <!-- TEXTO ELIMINADO: CP Gilberto Pulido, Especialista... Más de 15 años -->
-            <div class="highlight-box">
-              <h3 class="highlight-title">Consulta Inicial Sin Costo</h3>
-              <p style="font-size: 12px; line-height: 1.4;">Analizamos tus necesidades y te presentamos un plan personalizado sin compromiso.</p>
-            </div>
-            <div style="margin-top: auto; text-align: center;">
-              <div style="background: rgba(255,255,255,0.1); padding: 9px; border-radius: 4px; margin-bottom: 12px;">
-                <p style="font-size: 13px; font-weight: 600;">¡Agenda una consulta gratuita!</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Separador entre lados -->
-      <div style="text-align: center; margin: 40px 0; width: 100%;">
-        <div style="border-top: 2px dashed #ccc; padding-top: 20px;">
-          <h3 style="color: var(--primary-blue);">LADO B - Interior (Contenido detallado al abrir)</h3>
-          <p style="color: #666; font-size: 14px;">Mismas dimensiones que Lado A: 99mm × 210mm por panel</p>
-        </div>
-      </div>
-      
-      <!-- LADO B - Interior (Contenido detallado) - MISMAS DIMENSIONES QUE LADO A -->
-      <div class="triptych side-b">
-        <!-- Panel 4 (Interior izquierdo) -->
-        <div class="panel panel-d">
-          <div class="fold-marker"></div>
-          <div class="triptych-content">
-            <h2 class="triptych-title" style="color: var(--primary-blue);">Nuestra Filosofía</h2>
-            <p class="triptych-text" style="color: var(--text-dark);">
-              Creemos que la auditoría no es un evento aislado, sino un proceso que se construye junto al cliente.
-            </p>
-            <img src="https://i.imgur.com/H9u54tb.png" class="content-image" alt="Filosofía de trabajo">
-            <div style="margin: 15px 0;">
-              <h3 style="color: var(--accent-blue); font-size: 14px; margin-bottom: 6px;">Pilares Fundamentales</h3>
-              <ul class="triptych-list">
-                <li><strong>Control como crecimiento:</strong> Transformamos el control en palanca estratégica</li>
-                <li><strong>Confianza como resultado:</strong> Construimos relaciones basadas en transparencia</li>
-                <li><strong>Acompañamiento como diferencial:</strong> Proximidad en cada etapa del proceso</li>
-              </ul>
-            </div>
-            <div class="highlight-box">
-              <p style="font-size: 11px; line-height: 1.5; color: var(--text-dark);">
-                <strong>Nos involucramos</strong> de forma activa, ordenada, puntual y oportuna, acompañando cada decisión con criterio profesional.
-              </p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Panel 5 (Interior central) -->
-        <div class="panel panel-e">
-          <div class="fold-marker"></div>
-          <div class="triptych-content">
-            <h2 class="triptych-title" style="color: var(--primary-blue);">Servicios Especializados</h2>
-            <div style="margin: 15px 0;">
-              <h3 style="color: var(--accent-blue); font-size: 14px; margin-bottom: 9px;">Auditoría</h3>
-              <p style="font-size: 11px; line-height: 1.4; margin-bottom: 9px; color: var(--text-dark);">
-                Enfoque preventivo que brinda transparencia, confianza y solidez a la información financiera.
-              </p>
-              <ul class="triptych-list">
-                <li>Auditoría Fiscal</li>
-                <li>Auditoría de Estados Financieros</li>
-                <li>Control Interno</li>
-                <li>Servicios de Aseguramiento</li>
-                <li>Dictámenes e Informes Especiales</li>
-              </ul>
-            </div>
-            <img src="https://i.imgur.com/XYIbALB.png" class="content-image" alt="Servicios BPS y BPO">
-            <div style="margin: 18px 0;">
-              <h3 style="color: var(--accent-blue); font-size: 14px; margin-bottom: 9px;">BPS & BPO</h3>
-              <p style="font-size: 11px; line-height: 1.4; margin-bottom: 9px; color: var(--text-dark);">
-                Externalización de procesos con control y disciplina operativa.
-              </p>
-              <div class="column-container">
-                <div class="column-section">
-                  <strong>Contabilidad:</strong>
-                  <ul style="list-style: none; margin-top: 3px; padding-left: 0;">
-                    <li style="font-size: 10px; padding: 3px 0;">• Gestión de procesos</li>
-                    <li style="font-size: 10px; padding: 3px 0;">• Cumplimiento tributario</li>
-                    <li style="font-size: 10px; padding: 3px 0;">• Reconciliaciones</li>
-                  </ul>
-                </div>
-                <div class="column-section">
-                  <strong>Administración:</strong>
-                  <ul style="list-style: none; margin-top: 3px; padding-left: 0;">
-                    <li style="font-size: 10px; padding: 3px 0;">• Cuentas por cobrar/pagar</li>
-                    <li style="font-size: 10px; padding: 3px 0;">• Nómina</li>
-                    <li style="font-size: 10px; padding: 3px 0;">• Control de activos</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Panel 6 (Interior derecho) -->
-        <div class="panel panel-f">
-          <div class="triptych-content">
-            <div style="margin-bottom: 18px;">
-              <h2 class="triptych-title" style="color: var(--primary-blue);">Misión & Visión</h2>
-              <div style="margin: 15px 0;">
-                <h3 style="color: var(--accent-blue); font-size: 14px; margin-bottom: 6px;">Misión</h3>
-                <p style="font-size: 11px; line-height: 1.4; color: var(--text-dark);">
-                  Acompañar a nuestros clientes en procesos de auditoría y control con un enfoque integral.
-                </p>
-              </div>
-              <div style="margin: 15px 0;">
-                <h3 style="color: var(--accent-blue); font-size: 14px; margin-bottom: 6px;">Visión</h3>
-                <p style="font-size: 11px; line-height: 1.4; color: var(--text-dark);">
-                  Ser una firma referente a nivel nacional por nuestra manera de conducir los procesos de auditoría.
-                </p>
-              </div>
-            </div>
-            <img src="https://i.imgur.com/N7bvlVG.png" class="content-image" alt="Control operativo" style="max-height: 90px;">
-            <img src="https://i.imgur.com/x5CPPGg.png" class="content-image" alt="Valores corporativos" style="max-height: 84px; margin-top: 0;">
-            <div class="contact-info" style="margin-top: auto;">
-              <h3 style="color: var(--primary-blue); font-size: 13px; margin-bottom: 6px;">Contacto</h3>
-              <p style="font-size: 11px; line-height: 1.4; margin-bottom: 3px;"><strong>CP Gilberto Pulido</strong><br>Especialista en Auditoría y Control Interno</p>
-              <p style="font-size: 10px; color: var(--text-light);">
-                Tel: +52-56-6855-0117<br>
-                Email: contacto@pulidoasesores.com<br>
-                WhatsApp: +52-56-6855-0117
-              </p>
-              <div style="margin-top: 9px; padding: 6px; background: #f8f9fa; border-radius: 3px;">
-                <p style="font-size: 10px; text-align: center; color: var(--accent-blue);">
-                  <strong>¡Solicita tu auditoría de diagnóstico sin costo!</strong>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Instrucciones de impresión -->
-    <div class="print-instructions">
-      <h3>✅ Ajustes realizados para impresión horizontal</h3>
-      <p>Se han implementado todas las correcciones solicitadas:</p>
-      <div class="print-steps">
-        <div class="step">
-          <span class="step-number">1</span>
-          <strong>Texto eliminado</strong>
-          <p>Se removió "CP Gilberto Pulido, Especialista en Auditoría y Control Interno, Más de 15 años de experiencia" del Panel C (Lado A).</p>
-        </div>
-        <div class="step">
-          <span class="step-number">2</span>
-          <strong>Impresión horizontal</strong>
-          <p>Configuración cambiada a formato landscape (horizontal) con tamaño página A4: 297mm × 210mm.</p>
-        </div>
-        <div class="step">
-          <span class="step-number">3</span>
-          <strong>Líneas de doblez mejoradas</strong>
-          <p>Líneas punteadas ajustadas a 2px de grosor con mayor visibilidad, posicionadas correctamente entre paneles.</p>
-        </div>
-        <div class="step">
-          <span class="step-number">4</span>
-          <strong>Dimensiones iguales</strong>
-          <p>Lado A y Lado B con IDÉNTICAS dimensiones: cada panel mide 99mm × 210mm con padding y márgenes iguales.</p>
-        </div>
-      </div>
-      <div style="margin-top: 15px; padding: 10px; background: #e8f4fd; border-radius: 4px;">
-        <p style="font-size: 14px; color: var(--primary-blue);">
-          <strong>Verificación de dimensiones:</strong> Ambos lados usan exactamente la misma estructura CSS (.panel) garantizando dimensiones idénticas. Cada panel: 99mm ancho × 210mm alto.
-        </p>
-      </div>
-    </div>
-  </div>
+<div class="header">
+  <h1>Tríptico Pulido Asesores</h1>
+  <button class="print" onclick="window.print()">Imprimir</button>
+  <button class="pdf" onclick="downloadPDF()">Descargar PDF 300 DPI</button>
 </div>
 
-<!-- Modal de ayuda -->
-<div id="helpModal" class="modal">
-  <div class="modal-content">
-    <button class="modal-close" onclick="closeHelpModal()">&times;</button>
-    <h2>✅ Cambios Implementados</h2>
-    <p>Se han realizado los siguientes ajustes al tríptico:</p>
-    <ol style="margin-left: 20px; margin-bottom: 15px;">
-      <li><strong>Texto eliminado:</strong> Removida la sección de "CP Gilberto Pulido" del Panel C (Lado A)</li>
-      <li><strong>Formato horizontal:</strong> Cambiada la orientación a landscape (297mm × 210mm)</li>
-      <li><strong>Líneas de doblez:</strong> Aumentado grosor a 2px y mejorado contraste para mejor visibilidad</li>
-      <li><strong>Dimensiones iguales:</strong> Lado A y Lado B comparten exactamente las mismas dimensiones CSS</li>
-    </ol>
-    
-    <h3>Para verificar la impresión:</h3>
-    <p>1. Haga clic en "Vista previa de impresión" (Ctrl+P)<br>
-    2. Verifique que la orientación sea horizontal/landscape<br>
-    3. Confirme que las líneas punteadas sean visibles entre paneles<br>
-    4. Descargue el PDF para ver el resultado final</p>
-    
-    <div style="margin-top: 20px; padding: 10px; background: #f8f9fa; border-radius: 4px;">
-      <p><strong>¿Problemas con la vista previa?</strong><br>
-      Las dimensiones en pantalla están escaladas al 70%. El PDF generado tendrá las dimensiones correctas para impresión.</p>
+<div class="preview">
+
+<!-- ================= LADO A ================= -->
+<div class="triptych side-a">
+
+  <!-- PANEL 1 -->
+  <div class="panel panel-a">
+    <div class="content light">
+      <h2>Especialistas en Auditoría</h2>
+      <div class="card">
+        Auditoría como acompañamiento estratégico, con rigor técnico, cercanía y enfoque preventivo.
+      </div>
+      <div class="image" style="background-image:url('https://i.imgur.com/c1al2rA.png')"></div>
+      <ul>
+        <li>Auditoría Financiera</li>
+        <li>Auditoría Fiscal</li>
+        <li>Control Interno</li>
+        <li>BPS & BPO</li>
+      </ul>
+      <div class="contact">
+        Tel. +52 56 6855 0117<br>
+        contacto@pulidoasesores.com
+      </div>
     </div>
   </div>
+
+  <!-- PANEL 2 – LOGO PROTAGÓNICO -->
+  <div class="panel panel-b">
+    <div class="content light" style="text-align:center">
+      <img src="https://i.imgur.com/DGBtqM1.png" class="logo">
+      <h1>PULIDO ASESORES</h1>
+      <p>Firma Especializada</p>
+      <div class="card">
+        Certeza financiera • Control • Confianza
+      </div>
+      <p><em>“Transformamos el control en una herramienta de crecimiento”</em></p>
+
+      <div class="qr">
+        <img src="https://i.imgur.com/x5CPPGg.png" alt="QR">
+        <span>Escanea para más información</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL 3 -->
+  <div class="panel panel-c">
+    <div class="content light">
+      <h2>¿Por qué elegirnos?</h2>
+      <ul>
+        <li><strong>Enfoque preventivo:</strong> identificación oportuna de riesgos</li>
+        <li><strong>Acompañamiento cercano:</strong> somos aliados del negocio</li>
+        <li><strong>Rigor técnico:</strong> metodologías sólidas y actuales</li>
+        <li><strong>Soluciones integrales:</strong> auditoría + BPO integrados</li>
+      </ul>
+      <div class="image" style="background-image:url('https://i.imgur.com/yWbW5EY.png')"></div>
+      <div class="card">Consulta inicial sin costo</div>
+    </div>
+  </div>
+
 </div>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- ================= LADO B ================= -->
+<div class="triptych side-b">
+
+  <!-- PANEL 4 -->
+  <div class="panel panel-d">
+    <div class="content dark">
+      <h2>Nuestra Filosofía</h2>
+      <p>
+        Creemos que la auditoría no es un evento aislado,
+        sino un proceso que se construye junto al cliente.
+      </p>
+      <div class="image" style="background-image:url('https://i.imgur.com/H9u54tb.png')"></div>
+      <h3>Pilares Fundamentales</h3>
+      <ul>
+        <li>Control como crecimiento</li>
+        <li>Confianza como resultado</li>
+        <li>Acompañamiento como diferencial</li>
+      </ul>
+      <div class="card">
+        Nos involucramos de forma activa, ordenada, puntual y oportuna.
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL 5 -->
+  <div class="panel panel-e">
+    <div class="content dark">
+      <h2>Servicios Especializados</h2>
+      <h3>Auditoría</h3>
+      <ul>
+        <li>Auditoría Fiscal</li>
+        <li>Auditoría de Estados Financieros</li>
+        <li>Control Interno</li>
+        <li>Dictámenes e Informes Especiales</li>
+      </ul>
+      <div class="image" style="background-image:url('https://i.imgur.com/XYIbALB.png')"></div>
+      <h3>BPS & BPO</h3>
+      <p>
+        Externalización de procesos con control,
+        disciplina operativa y enfoque estratégico.
+      </p>
+    </div>
+  </div>
+
+  <!-- PANEL 6 -->
+  <div class="panel panel-f">
+    <div class="content dark">
+      <h2>Misión</h2>
+      <p>
+        Acompañar a nuestros clientes en procesos de auditoría
+        y control con un enfoque integral.
+      </p>
+      <h2>Visión</h2>
+      <p>
+        Ser una firma referente a nivel nacional por nuestra
+        forma de conducir procesos de auditoría.
+      </p>
+      <div class="image" style="background-image:url('https://i.imgur.com/N7bvlVG.png')"></div>
+      <div class="contact dark">
+        <strong>CP Gilberto Pulido</strong><br>
+        Especialista en Auditoría y Control Interno<br>
+        WhatsApp +52 56 6855 0117
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>
+
 <script>
-// Funcionalidad para modal
-function openHelpModal() { document.getElementById('helpModal').style.display = 'flex'; }
-function closeHelpModal() { document.getElementById('helpModal').style.display = 'none'; }
-document.getElementById('helpModal').addEventListener('click', function(e) { if (e.target === this) closeHelpModal(); });
-document.getElementById('openHelp').addEventListener('click', openHelpModal);
-
-// Función para descargar PDF del tríptico en formato horizontal
-document.getElementById('downloadTriptico').addEventListener('click', generateTripticoPDF);
-function generateTripticoPDF() {
-  const loadingOverlay = document.createElement('div');
-  loadingOverlay.style.cssText = `position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; color: white; font-size: 18px;`;
-  loadingOverlay.innerHTML = `<div style="width: 50px; height: 50px; border: 5px solid #f3f3f3; border-top: 5px solid var(--accent-blue); border-radius: 50%; animation: spin 1s linear infinite;"></div><div style="margin-top: 20px;">Generando PDF horizontal con dimensiones iguales...</div><style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>`;
-  document.body.appendChild(loadingOverlay);
-
-  // Clonar el contenido del tríptico para el PDF
-  const triptychContent = document.querySelector('.triptych-preview').cloneNode(true);
-  triptychContent.querySelector('.print-instructions').remove();
-  const titleElements = triptychContent.querySelectorAll('h2, h3, p');
-  titleElements.forEach(el => {
-    if (el.textContent.includes('Vista Previa') || 
-        el.textContent.includes('LADO') || 
-        el.textContent.includes('Formato horizontal') ||
-        el.textContent.includes('✅') ||
-        el.textContent.includes('Tamaño de cada panel')) {
-      el.remove();
-    }
-  });
-
-  // Añadir estilos específicos para el PDF horizontal
-  const pdfStyles = document.createElement('style');
-  pdfStyles.textContent = `
-    @media print {
-      @page { 
-        size: A4 landscape; 
-        margin: 12mm !important; 
-        marks: crop cross; 
-      }
-      body { 
-        margin: 0 !important; 
-        padding: 0 !important; 
-        background: white !important; 
-        width: 100% !important;
-        height: 100% !important;
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-      }
-      .triptych { 
-        box-shadow: none !important; 
-        margin: 0 auto !important; 
-        padding: 0 !important;
-        width: 297mm !important;
-        height: 210mm !important;
-        page-break-after: always !important;
-      }
-      .panel { 
-        width: 99mm !important; 
-        height: 210mm !important; 
-        padding: 18mm 10mm 12mm 10mm !important; 
-        margin: 0 !important; 
-        overflow: hidden !important;
-        border-right: 2px dashed rgba(0, 0, 0, 0.3) !important;
-      }
-      .panel-c, .panel-f { border-right: none !important; }
-      .triptych-content {
-        height: 186mm !important;
-        overflow: hidden !important;
-      }
-      .side-a, .side-b { page-break-after: always !important; }
-    }
-    body { 
-      font-family: 'Segoe UI', system-ui, sans-serif !important; 
-      margin: 0 !important; 
-      padding: 0 !important;
-    }
-    .triptych { 
-      display: flex !important; 
-      width: 297mm !important;
-      height: 210mm !important;
-    }
-    .panel { 
-      width: 99mm !important; 
-      height: 210mm !important; 
-      padding: 18mm 10mm 12mm 10mm !important; 
-      page-break-inside: avoid !important; 
-      overflow: hidden !important;
-    }
-    .side-a, .side-b { 
-      page-break-after: always !important; 
-    }
-    .content-image {
-      max-height: 35mm !important;
-      page-break-inside: avoid !important;
-    }
-    .fold-marker {
-      display: none !important;
-    }
-  `;
-  triptychContent.appendChild(pdfStyles);
-
-  // Configuración de PDF para formato horizontal
-  const opt = {
-    margin: [0, 0, 0, 0],
-    filename: 'Pulido-Asesores-Triptico-Horizontal.pdf',
-    image: { 
-      type: 'jpeg', 
-      quality: 0.98,
-      scale: 2
+function downloadPDF(){
+  html2pdf().set({
+    margin:0,
+    filename:'Pulido-Asesores-Brochure-300DPI.pdf',
+    image:{type:'jpeg',quality:1},
+    html2canvas:{
+      scale:4,
+      useCORS:true,
+      backgroundColor:'#ffffff',
+      windowWidth:3508,
+      windowHeight:2480
     },
-    html2canvas: { 
-      scale: 2,
-      useCORS: true,
-      scrollY: 0,
-      width: 1123, // 297mm * 3.79px/mm (escala para html2canvas)
-      height: 794, // 210mm * 3.79px/mm
-      backgroundColor: '#ffffff',
-      logging: false,
-      letterRendering: true,
-      allowTaint: true
+    jsPDF:{
+      unit:'mm',
+      format:'a4',
+      orientation:'landscape',
+      compress:false
     },
-    jsPDF: { 
-      unit: 'mm', 
-      format: 'a4', 
-      orientation: 'landscape',
-      compress: true,
-      hotfixes: ["px_scaling"]
-    },
-    pagebreak: { 
-      mode: ['avoid-all', 'css', 'legacy'],
-      before: '.side-b'
+    pagebreak:{
+      mode:['css'],
+      after:'.side-a'
     }
-  };
-
-  // Generar y descargar el PDF
-  setTimeout(() => {
-    html2pdf()
-      .set(opt)
-      .from(triptychContent)
-      .save()
-      .then(() => {
-        document.body.removeChild(loadingOverlay);
-        const notification = document.createElement('div');
-        notification.style.cssText = `position: fixed; top: 20px; right: 20px; background: #28a745; color: white; padding: 15px 25px; border-radius: 4px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 9999;`;
-        notification.innerHTML = `<i class="fas fa-check-circle"></i> PDF horizontal generado exitosamente`;
-        document.body.appendChild(notification);
-        setTimeout(() => { 
-          notification.style.opacity = '0'; 
-          notification.style.transform = 'translateX(100%)'; 
-          notification.style.transition = 'all 0.3s ease'; 
-          setTimeout(() => { document.body.removeChild(notification); }, 300); 
-        }, 3000);
-      })
-      .catch(err => {
-        console.error('Error generando PDF:', err);
-        document.body.removeChild(loadingOverlay);
-        const errorNotification = document.createElement('div');
-        errorNotification.style.cssText = `position: fixed; top: 20px; right: 20px; background: #dc3545; color: white; padding: 15px 25px; border-radius: 4px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); z-index: 9999;`;
-        errorNotification.textContent = 'Error al generar el PDF. Intente nuevamente.';
-        document.body.appendChild(errorNotification);
-        setTimeout(() => { errorNotification.remove(); }, 5000);
-      });
-  }, 1000);
+  }).from(document.querySelector('.preview')).save();
 }
-
-// Verificación de dimensiones
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('✅ Tríptico en formato horizontal configurado');
-  console.log('📐 Dimensiones por panel: 99mm (ancho) × 210mm (alto)');
-  console.log('🔄 Lado A y Lado B tienen dimensiones CSS idénticas');
-  console.log('🖨️ Formato de impresión: A4 Landscape (horizontal)');
-  console.log('📏 Rebase configurado: 1.2cm en todos los bordes');
-});
 </script>
+
 </body>
 </html>
