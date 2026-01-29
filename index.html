@@ -2,14 +2,14 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Pulido Asesores | Brochure Tríptico Premium</title>
+<title>Pulido Asesores | Brochure PNG 300 DPI</title>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<!-- html2canvas -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <style>
 :root{
   --blue-dark:#0b1e33;
-  --blue-mid:#1a3a5f;
   --blue-accent:#2a7de1;
   --text-dark:#1e1e1e;
 }
@@ -31,14 +31,14 @@ body{
 }
 .header button{
   margin:8px;
-  padding:12px 24px;
+  padding:12px 26px;
   border:none;
   border-radius:4px;
   font-weight:600;
   cursor:pointer;
+  background:var(--blue-accent);
+  color:#fff;
 }
-.print{background:#28a745;color:#fff}
-.pdf{background:var(--blue-accent);color:#fff}
 
 /* ================= CONTENEDOR ================= */
 .preview{
@@ -71,29 +71,26 @@ body{
 .panel:last-child{border-right:none}
 
 /* ================= OVERLAYS ================= */
-
-/* LADO A – exterior */
 .side-a .panel::before{
   content:"";
   position:absolute;
   inset:0;
   background:linear-gradient(
     180deg,
-    rgba(11,30,51,.92) 0%,
-    rgba(11,30,51,.70) 100%
+    rgba(11,30,51,.92),
+    rgba(11,30,51,.70)
   );
   z-index:0;
 }
 
-/* LADO B – interior */
 .side-b .panel::before{
   content:"";
   position:absolute;
   inset:0;
   background:linear-gradient(
     180deg,
-    rgba(255,255,255,.97) 0%,
-    rgba(255,255,255,.88) 100%
+    rgba(255,255,255,.97),
+    rgba(255,255,255,.88)
   );
   z-index:0;
 }
@@ -102,7 +99,6 @@ body{
 .panel-a{background:url('https://i.imgur.com/lypuRIZ.png') center/cover}
 .panel-b{background:url('https://i.imgur.com/Azdj5Zf.png') center/cover}
 .panel-c{background:url('https://i.imgur.com/yWbW5EY.png') center/cover}
-
 .panel-d{background:url('https://i.imgur.com/H9u54tb.png') center/cover}
 .panel-e{background:url('https://i.imgur.com/XYIbALB.png') center/cover}
 .panel-f{background:url('https://i.imgur.com/N7bvlVG.png') center/cover}
@@ -124,34 +120,16 @@ body{
   margin:0 auto 24px;
 }
 
-h1{
-  font-size:26px;
-  font-weight:900;
-  letter-spacing:.6px;
-  text-transform:uppercase;
-  margin-bottom:12px;
-}
-h2{
-  font-size:21px;
-  font-weight:800;
-  margin-bottom:10px;
-}
-h3{
-  font-size:14px;
-  color:var(--blue-accent);
-  margin-bottom:6px;
-}
+h1{font-size:26px;font-weight:900;margin-bottom:12px}
+h2{font-size:21px;font-weight:800;margin-bottom:10px}
+h3{font-size:14px;color:var(--blue-accent)}
 
-p{
-  font-size:12px;
-  line-height:1.55;
-  margin-bottom:12px;
-}
+p{font-size:12px;line-height:1.55;margin-bottom:12px}
 
 ul{list-style:none}
 li{
   font-size:11px;
-  padding:6px 0 6px 14px;
+  padding-left:14px;
   position:relative;
 }
 li::before{
@@ -159,7 +137,6 @@ li::before{
   position:absolute;
   left:0;
   color:var(--blue-accent);
-  font-weight:bold;
 }
 
 .card{
@@ -170,21 +147,6 @@ li::before{
   font-size:11px;
 }
 
-.side-b .card{
-  background:#f3f6fb;
-}
-
-/* ================= IMÁGENES BLOQUE ================= */
-.image{
-  width:100%;
-  height:110px;
-  background-size:cover;
-  background-position:center;
-  border-radius:6px;
-  margin:16px 0;
-}
-
-/* ================= QR ================= */
 .qr{
   margin-top:auto;
   text-align:center;
@@ -192,45 +154,11 @@ li::before{
 .qr img{
   width:80px;
   height:80px;
-  margin-bottom:6px;
-}
-.qr span{
-  font-size:10px;
 }
 
-/* ================= CONTACTO ================= */
-.contact{
-  margin-top:auto;
-  border-top:1px solid rgba(255,255,255,.35);
-  padding-top:10px;
-  font-size:10px;
-  text-align:center;
-}
-.side-b .contact{
-  border-color:#dcdcdc;
-}
-
-/* ================= IMPRESIÓN ================= */
+/* ================= VISTA SOLO ================= */
 @media print{
-  body{margin:0;padding:0;background:#fff}
   .header{display:none}
-  .triptych{
-    transform:none!important;
-    width:297mm!important;
-    height:210mm!important;
-    box-shadow:none!important;
-    page-break-after:always;
-  }
-  .panel{
-    width:99mm!important;
-    height:210mm!important;
-    padding:15mm 10mm!important;
-  }
-  .side-a{page-break-after:always}
-  @page{
-    size:A4 landscape;
-    margin:5mm;
-  }
 }
 </style>
 </head>
@@ -238,191 +166,93 @@ li::before{
 <body>
 
 <div class="header">
-  <h1>Tríptico Pulido Asesores</h1>
-  <button class="print" onclick="window.print()">Imprimir</button>
-  <button class="pdf" onclick="downloadPDF()">Descargar PDF 300 DPI</button>
+  <h1>Descarga para Imprenta</h1>
+  <button onclick="downloadPNG('side-a','Pulido-Asesores-Lado-A-300dpi.png')">
+    Descargar LADO A – PNG 300 DPI
+  </button>
+  <button onclick="downloadPNG('side-b','Pulido-Asesores-Lado-B-300dpi.png')">
+    Descargar LADO B – PNG 300 DPI
+  </button>
 </div>
 
 <div class="preview">
 
-<!-- ================= LADO A ================= -->
+<!-- ========== LADO A ========== -->
 <div class="triptych side-a">
-
-  <!-- PANEL 1 -->
   <div class="panel panel-a">
     <div class="content light">
       <h2>Especialistas en Auditoría</h2>
-      <div class="card">
-        Auditoría como acompañamiento estratégico, con rigor técnico, cercanía y enfoque preventivo.
-      </div>
-      <div class="image" style="background-image:url('https://i.imgur.com/c1al2rA.png')"></div>
-      <ul>
-        <li>Auditoría Financiera</li>
-        <li>Auditoría Fiscal</li>
-        <li>Control Interno</li>
-        <li>BPS & BPO</li>
-      </ul>
-      <div class="contact">
-        Tel. +52 56 6855 0117<br>
-        contacto@pulidoasesores.com
-      </div>
+      <div class="card">Auditoría como acompañamiento estratégico.</div>
     </div>
   </div>
-
-  <!-- PANEL 2 – LOGO PROTAGÓNICO -->
   <div class="panel panel-b">
     <div class="content light" style="text-align:center">
       <img src="https://i.imgur.com/DGBtqM1.png" class="logo">
       <h1>PULIDO ASESORES</h1>
-      <p>Firma Especializada</p>
-      <div class="card">
-        Certeza financiera • Control • Confianza
-      </div>
-      <p><em>“Transformamos el control en una herramienta de crecimiento”</em></p>
-
       <div class="qr">
-        <img src="https://i.imgur.com/x5CPPGg.png" alt="QR">
-        <span>Escanea para más información</span>
+        <img src="https://i.imgur.com/x5CPPGg.png">
+        <p>Escanea para más información</p>
       </div>
     </div>
   </div>
-
-  <!-- PANEL 3 -->
   <div class="panel panel-c">
     <div class="content light">
       <h2>¿Por qué elegirnos?</h2>
       <ul>
-        <li><strong>Enfoque preventivo:</strong> identificación oportuna de riesgos</li>
-        <li><strong>Acompañamiento cercano:</strong> somos aliados del negocio</li>
-        <li><strong>Rigor técnico:</strong> metodologías sólidas y actuales</li>
-        <li><strong>Soluciones integrales:</strong> auditoría + BPO integrados</li>
+        <li>Enfoque preventivo</li>
+        <li>Acompañamiento cercano</li>
+        <li>Rigor técnico</li>
       </ul>
-      <div class="image" style="background-image:url('https://i.imgur.com/yWbW5EY.png')"></div>
-      <div class="card">Consulta inicial sin costo</div>
     </div>
   </div>
-
 </div>
 
-<!-- ================= LADO B ================= -->
+<!-- ========== LADO B ========== -->
 <div class="triptych side-b">
-
-  <!-- PANEL 4 -->
   <div class="panel panel-d">
     <div class="content dark">
       <h2>Nuestra Filosofía</h2>
-      <p>
-        Creemos que la auditoría no es un evento aislado,
-        sino un proceso que se construye junto al cliente.
-      </p>
-      <div class="image" style="background-image:url('https://i.imgur.com/H9u54tb.png')"></div>
-      <h3>Pilares Fundamentales</h3>
-      <ul>
-        <li>Control como crecimiento</li>
-        <li>Confianza como resultado</li>
-        <li>Acompañamiento como diferencial</li>
-      </ul>
-      <div class="card">
-        Nos involucramos de forma activa, ordenada, puntual y oportuna.
-      </div>
+      <p>La auditoría es un proceso compartido.</p>
     </div>
   </div>
-
-  <!-- PANEL 5 -->
   <div class="panel panel-e">
     <div class="content dark">
-      <h2>Servicios Especializados</h2>
-      <h3>Auditoría</h3>
+      <h2>Servicios</h2>
       <ul>
         <li>Auditoría Fiscal</li>
-        <li>Auditoría de Estados Financieros</li>
+        <li>Estados Financieros</li>
         <li>Control Interno</li>
-        <li>Dictámenes e Informes Especiales</li>
       </ul>
-      <div class="image" style="background-image:url('https://i.imgur.com/XYIbALB.png')"></div>
-      <h3>BPS & BPO</h3>
-      <p>
-        Externalización de procesos con control,
-        disciplina operativa y enfoque estratégico.
-      </p>
     </div>
   </div>
-
-  <!-- PANEL 6 -->
   <div class="panel panel-f">
     <div class="content dark">
-      <h2>Misión</h2>
-      <p>
-        Acompañar a nuestros clientes en procesos de auditoría
-        y control con un enfoque integral.
-      </p>
-      <h2>Visión</h2>
-      <p>
-        Ser una firma referente a nivel nacional por nuestra
-        forma de conducir procesos de auditoría.
-      </p>
-      <div class="image" style="background-image:url('https://i.imgur.com/N7bvlVG.png')"></div>
-      <div class="contact dark">
-        <strong>CP Gilberto Pulido</strong><br>
-        Especialista en Auditoría y Control Interno<br>
-        WhatsApp +52 56 6855 0117
-      </div>
+      <h2>Misión & Visión</h2>
+      <p>Firma referente en auditoría.</p>
     </div>
   </div>
-
 </div>
 
 </div>
 
 <script>
-function downloadPDF(){
+function downloadPNG(sideClass, filename){
+  const target = document.querySelector(`.${sideClass}`);
 
-  const sideA = document.querySelector('.triptych.side-a');
-  const sideB = document.querySelector('.triptych.side-b');
-
-  const container = document.createElement('div');
-  container.appendChild(sideA.cloneNode(true));
-  container.appendChild(sideB.cloneNode(true));
-
-  document.body.appendChild(container);
-
-  html2pdf().set({
-    margin: 0,
-    filename: 'Pulido-Asesores-Brochure-300DPI.pdf',
-
-    image: {
-      type: 'jpeg',
-      quality: 1
-    },
-
-    html2canvas: {
-      scale: 4, // 300 DPI real
-      useCORS: true,
-      backgroundColor: '#ffffff',
-      width: 3508,
-      height: 2480,
-      windowWidth: 3508,
-      windowHeight: 2480
-    },
-
-    jsPDF: {
-      unit: 'mm',
-      format: 'a4',
-      orientation: 'landscape',
-      compress: false
-    },
-
-    pagebreak: {
-      mode: ['css'],
-      after: '.side-a'
-    }
-
-  }).from(container).save().then(() => {
-    document.body.removeChild(container);
+  html2canvas(target, {
+    scale:4,
+    useCORS:true,
+    backgroundColor:'#ffffff',
+    width:3508,
+    height:2480
+  }).then(canvas=>{
+    const link=document.createElement('a');
+    link.download=filename;
+    link.href=canvas.toDataURL('image/png');
+    link.click();
   });
 }
 </script>
-
 
 </body>
 </html>
